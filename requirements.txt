@@ -1,0 +1,5 @@
+python-dotenv
+django
+Pillow
+django-libsass==0.7
+django_compressor

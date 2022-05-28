@@ -1,0 +1,64 @@
+{% extends 'reports/base.html' %}
+{% load static %}
+
+{% block css %}
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <link href="{% static 'css/choose.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <nav>
+  <div class="container">
+      <div class="choose1">
+        <p>Выбери из списка</p>
+      </div>
+
+  </div>
+</nav>
+<section class="gallery">
+  <div class="container">
+    <div class="grid">
+      <div class="column-xs-12 column-md-4">
+        <figure class="img-container">
+          <img src="{% static 'vendor/img/choose/notebook.png' %}" />
+          <figcaption class="img-content">
+            <h2 class="title">Отделение</h2>
+            <h3 class="category">План-отчет отделения</h3>
+          </figcaption>
+          <span class="img-content-hover">
+            <h2 class="title">Отделение</h2>
+            <h3 class="category">План-отчет отделения</h3>
+          </span>
+        </figure>
+      </div>
+      <div class="column-xs-12 column-md-4">
+        <figure class="img-container">
+          <img src="{% static 'vendor/img/choose/workplace.png' %}" />
+          <figcaption class="img-content">
+            <h2 class="title">Отдел</h2>
+            <h3 class="category">План-отчет по отделу</h3>
+          </figcaption>
+          <span class="img-content-hover">
+            <h2 class="title">Отдел</h2>
+            <h3 class="category">План-отчет по отделу</h3>
+          </span>
+        </figure>
+      </div>
+      <div class="column-xs-12 column-md-4">
+        <figure class="img-container">
+          <img src="{% static 'vendor/img/choose/watch1.jpg' %}">
+          <figcaption class="img-content">
+            <h2 class="title">Мои задачи</h2>
+            <h3 class="category">План-отчет по моим задачам</h3>
+          </figcaption>
+          <span class="img-content-hover">
+            <h2 class="title">Мои задачи</h2>
+            <h3 class="category">План-отчет по моим задачам</h3>
+          </span>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
