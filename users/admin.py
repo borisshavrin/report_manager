@@ -1,13 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import User
 
-from users.models import UserProfile
-
-
-class UserProfileAdmin(admin.TabularInline):
-    model = UserProfile
-    fields = ('gender', 'about_me')
-    extra = 0           # удаляем доп поля
-
-
-class UserAdmin(admin.ModelAdmin):
-    inlines = (UserProfileAdmin,)
+admin.site.register(User, UserAdmin)

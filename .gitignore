@@ -106,3 +106,5 @@ GitHub.sublime-settings
 
 # cryptography
 /crypto/crypto.key
+
+\migrations

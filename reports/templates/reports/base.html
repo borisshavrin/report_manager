@@ -59,9 +59,9 @@
                     </li>
                     {% if user.is_staff or user.is_superuser %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'admins:index' %}">
-                                <i class="fas fa-users-cog"></i>
-                            </a>
+                            {#                            <a class="nav-link" href="{% url 'admins:index' %}">#}
+                            {#                                <i class="fas fa-users-cog"></i>#}
+                            {#                            </a>#}
                         </li>
                     {% endif %}
                     <li class="nav-item">
@@ -77,23 +77,26 @@
         </div>
     </div>
 </nav>
-{% if messages or form.errors %}
-    <div class="alert {% if messages %} alert-success {% else %} alert-warning {% endif %}
+<div class="container">
+    {% if messages or form.errors %}
+        <div class="alert {% if messages %} alert-success {% else %} alert-warning {% endif %}
             alert-dismissible fade show" role="alert" style="margin-top: 50px;">
-        {% if messages %}
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        {% else %}
-            {% for error_field, error_message in form.errors.items %}
-                <li> {{ error_field }}: {{ error_message }}</li>
-            {% endfor %}
-        {% endif %}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-{% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% else %}
+                {% for error_field, error_message in form.errors.items %}
+                    <li> {{ error_field }}: {{ error_message }}</li>
+                {% endfor %}
+            {% endif %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+</div>
+
 {% block content %} {% endblock %}
 
 {% block footer %} {% endblock %}

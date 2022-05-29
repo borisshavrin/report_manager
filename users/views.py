@@ -7,7 +7,7 @@ from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
 
-from users.forms import UserProfileForm, UserProfileEditForm, UserRegisterForm, UserLoginForm
+from users.forms import UserProfileForm, UserRegisterForm, UserLoginForm
 from users.models import User
 
 
@@ -60,38 +60,11 @@ class UsersProfileView(SuccessMessageMixin, UpdateView):
     template_name = 'users/profile.html'
     success_url = 'users:profile'
     success_message = 'Данные успешно изменены!'
-    form_class = UserProfileForm
     model = User
     template_name_suffix = '_update_form'
+    fields = ['username', 'first_name', 'last_name', 'patronymic', 'position', 'stuff_number', 'email', 'image']
 
-    def get(self, request, *args, **kwargs):
-        return self.render_to_response(
-            {'userprofileform': UserProfileForm(prefix='userprofileform_pre',
-                                                instance=request.user),
-             'userprofileeditform': UserProfileEditForm(prefix='userprofileeditform_pre',
-                                                        instance=request.user.userprofile)}
-        )
 
-    def get_context_data(self, **kwargs):
-        context = super(UsersProfileView, self).get_context_data(**kwargs)
-        if self.request.method == 'POST':
-            userprofileform = UserProfileForm(self.request.POST,
-                                              instance=self.request.user,
-                                              prefix='userprofileform_pre')
-            userprofileeditform = UserProfileEditForm(self.request.POST,
-                                                      instance=self.request.user.userprofile,
-                                                      prefix='userprofileeditform_pre')
-            if userprofileform.is_valid() and userprofileeditform.is_valid():
-                userprofileform.save()
-                return context
-        else:
-            userprofileform = UserProfileForm(instance=self.request.user)
-            userprofileeditform = UserProfileEditForm(instance=self.request.user.userprofile)
-
-        context['title'] = 'UWCA_Manager - Личный кабинет'
-        context['userprofileform'] = userprofileform
-        context['userprofileeditform'] = userprofileeditform
-        return context
 
     def get_success_url(self):
         return reverse_lazy(self.success_url, args=(self.request.user.pk,))
